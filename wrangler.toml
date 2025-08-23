@@ -1,6 +1,3 @@
  name = "tru-stride"
     main = "src/index.js"
     compatibility_date = "2025-08-22"
-
-    [site]
-    bucket = "./public" # Directory containing your static assets like index.html
