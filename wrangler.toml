@@ -1,4 +1,4 @@
- name = "tru-stride-worker"
+ name = "tru-stride"
     main = "src/index.js"
     compatibility_date = "2025-08-22"
 
