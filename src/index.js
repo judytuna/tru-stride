@@ -1,21 +1,17 @@
- import { getAssetFromKV } from '@cloudflare/kv-asset-handler';
+export default {
+  async fetch(request) {
+    const html = `<!DOCTYPE html>
+    <head>
+      <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/3.50.0/gradio.js"></script>
+    </head>
+    <body>
+    <gradio-app src="https://huggingface.co/spaces/IntuitiveHorseware/tru-stride-analyzer"></gradio-app>
+    </body>`;
 
-    addEventListener('fetch', event => {
-      try {
-        event.respondWith(handleEvent(event));
-      } catch (e) {
-        event.respondWith(new Response('Internal Error', { status: 500 }));
-      }
+    return new Response(html, {
+      headers: {
+        "content-type": "text/html;charset=UTF-8",
+      },
     });
-
-    async function handleEvent(event) {
-      try {
-        return await getAssetFromKV(event);
-      } catch (e) {
-        let pathname = new URL(event.request.url).pathname;
-        return new Response(`"${pathname}" not found`, {
-          status: 404,
-          statusText: 'not found',
-        });
-      }
-    }
+  },
+};
